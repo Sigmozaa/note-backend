@@ -10,8 +10,18 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const allowedOrigins = [
+  "http://localhost:5173", // dev frontend
+  "https://twoja-domena-frontend.vercel.app", // frontend produkcyjny
+];
+
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+  })
+);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
