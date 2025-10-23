@@ -12,14 +12,14 @@ const PORT = process.env.PORT || 3000;
 
 const allowedOrigins = [
   "http://localhost:5173", // dev frontend
-  "https://twoja-domena-frontend.vercel.app", // frontend produkcyjny
+  "https://note-backend-j4re.onrender.com", // frontend produkcyjny
 ];
 
 app.use(express.json());
 app.use(
   cors({
     origin: allowedOrigins,
-    methods: ["GET", "POST"],
+    methods: ["POST"],
   })
 );
 
