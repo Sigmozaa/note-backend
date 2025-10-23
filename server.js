@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 const allowedOrigins = [
   "http://localhost:5173", // dev frontend
-  "https://note-backend-j4re.onrender.com", // frontend produkcyjny
+  "https://note-ai-ashen.vercel.app", // frontend produkcyjny
 ];
 
 app.use(express.json());
