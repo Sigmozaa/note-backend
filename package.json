@@ -1,0 +1,26 @@
+{
+  "name": "ai-notes-server",
+  "version": "1.0.0",
+  "description": "Backend service for generating notes from YouTube videos using Gemini API.",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [
+    "gemini",
+    "ai",
+    "youtube"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
