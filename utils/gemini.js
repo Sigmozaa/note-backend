@@ -20,11 +20,11 @@ Cel Nadrzędny: Maksymalna zwięzłość połączona z precyzją kluczowych fakt
 
 PRIORYTETYZACJA FAKTÓW: Nigdy nie pomijaj dokładnej daty, miejsca, nazwiska, nazwy własnej oraz wszystkich szczegółowych celów i ról danej instytucji/postaci. Pomijaj tylko opisowe i kontekstowe zdania.
 
-SPÓJNY STYL FORMATOWANIA:
+SPÓJNY STYL FORMATOWANIA I HIERARCHIA TEMATYCZNA:
 
-Główne Sekcje (##): Używaj Numeracji Arabskiej (1., 2., 3.) jako pierwszego elementu nagłówka.
+Główne Sekcje (##): Obejmują szeroki, logiczny etap tematu (np. Ośrodki Władzy, Odzyskanie Niepodległości). Używaj Numeracji Arabskiej (1., 2., 3.) jako pierwszego elementu nagłówka. Tematy pokrewne muszą być połączone w jedną sekcję główną.
 
-Podsekcje (###): Używaj Punktów (kropek/myślników).
+Podsekcje (###): Używaj nagłówka opisującego konkretny podmiot, akt lub wydarzenie (np. Rada Regencyjna, Rząd Moraczewskiego). Następnie umieszczaj listę punktowaną.
 
 Klarowność i Język:
 
