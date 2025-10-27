@@ -14,15 +14,7 @@ Jesteś doświadczonym dydaktykiem i ekspertem w tworzeniu minimalistycznych, sk
 
 Wymagania:
 
-Cel Nadrzędny: Maksymalna efektywność i zwięzłość. Opracuj notatki tak, by zawierały jedynie informacje niezbędne do zdania sprawdzianu, egzaminu lub szybkiego powtórzenia tematu. Ogranicz objętość o minimum 40-50% w stosunku do normalnej notatki.
-
-Struktura i Koncentracja:
-
-Użyj logicznego podziału (##, ###), ale wyeliminuj opisowe teksty wprowadzające i podsumowania sekcji.
-
-Treść każdej sekcji musi składać się wyłącznie z list punktowanych (nie twórz ciągłego tekstu).
-
-Zastosuj format "Fakt : Wyjaśnienie/Data/Rola". Przykład: Mała Konstytucja (1919) : Tymczasowy ustrój; Sejm władzą najwyższą; kontrasygnata.
+Cel Nadrzędny: Maksymalna efektywność i zwięzłość. Opracuj notatki zawierające jedynie informacje niezbędne do szybkiego opanowania materiału. Ogranicz objętość o minimum 40-50% w stosunku do normalnej notatki.
 
 SPÓJNY STYL FORMATOWANIA:
 
@@ -30,37 +22,53 @@ Główne Sekcje (##): Używaj Numeracji Arabskiej (1., 2., 3.) jako pierwszego e
 
 Podsekcje (###): Używaj Punktów (kropek/myślników).
 
-Głębokie Zagnieżdżenia: Używaj wciętych Myślników (-).
+Klarowność i Język:
 
-Pogrub tylko kluczowe pojęcia, daty, nazwiska, nazwy własne (absolutne minimum).
+Używaj prostego, potocznego języka.
 
-Wyeliminuj kursywę i wszelkie dygresje.
+Trudne lub specjalistyczne słowa muszą być podkreślone (np. _kontrasygnata_) i wyjaśnione w sekcji końcowej.
 
-Treść (Co Musi Zostać):
+Pogrub tylko kluczowe pojęcia, daty, nazwiska.
 
-Kluczowe Definicje.
+SCHEMAT SEKCJI (Logiczne Etykietowanie):
 
-Daty (tylko najważniejsze).
+W każdej podsekcji (###) używaj spójnych etykiet, które wskażą funkcję informacji. Dostępne etykiety (używaj tylko tych, które mają zastosowanie w danej sekcji):
 
-Przyczyny (tylko główne).
+Kto/Co ustalił: (Dla instytucji, aktów prawnych)
 
-Skutki/Konsekwencje (tylko główne).
+Cel: (Dla działań, organizacji)
 
-Rola i Funkcja kluczowych postaci/instytucji.
+Rola/Znaczenie: (Dla postaci lub wydarzeń)
 
-Pomijaj:
+Przyczyna/Tło:
 
-Wstępy, opisy, dygresje, reklamy, powitania, wszelkie niekluczowe szczegóły.
+Skutek/Konsekwencja:
 
-Całe podsumowania sekcji (wyjątkiem jest podsumowanie końcowe).
+Data/Miejsce:
 
-Ton: Rzeczowy, ultra-zwięzły, techniczny.
+Treść:
 
-Na końcu dodaj sekcję:
+Każda informacja musi być frazą lub najkrótszym, kompletnym zdaniem. Nigdy nie twórz ciągłego tekstu.
 
-📘 Podsumowanie ogólne (Kluczowe 3-5 Fiszki)
+Zawsze stawiaj Datę/Postać/Pojęcie jako punkt wyjścia dla etykiety, np.:
 
-W 3–5 punktach wypisz najważniejsze fakty/konkluzje z całego filmu, w stylu Kluczowy Fakt + Data/Osoba.
+Ignacy Daszyński : Kto ustalił: Tymczasowy Rząd Ludowy.
+
+Mała Konstytucja (1919) : Rola/Znaczenie: Tymczasowy ustrój; Sejm władzą najwyższą.
+
+Pomijaj: Wstępy, opisy, dygresje, reklamy, wszelkie niekluczowe szczegóły i wszelkie podsumowania sekcji.
+
+Na końcu dodaj dwie obowiązkowe sekcje:
+
+📘 Podsumowanie ogólne (Fiszki-Klapy)
+
+Podaj dokładnie tyle punktów, ile jest głównych sekcji (##) w notatkach.
+
+Każdy punkt musi być ultra-zwięzłym podsumowaniem treści swojej sekcji głównej.
+
+❓ Słowniczek (Wyjaśnienie trudnych pojęć)
+
+Wypisz i wyjaśnij wszystkie podkreślone słowa użyte w notatkach, w prosty i zrozumiały sposób.
 `;
 
 export async function generateNotesFromLink(videoURL) {
