@@ -10,61 +10,57 @@ const model = genAI.getGenerativeModel({
 });
 
 const PROMPT_TEXT = `
-Jesteś doświadczonym dydaktykiem i ekspertem w tworzeniu skondensowanych materiałów edukacyjnych. Twoim zadaniem jest opracowanie kompletnych, logicznie uporządkowanych i przystępnych notatek na podstawie treści filmu wideo, niezależnie od tematyki (np. nauki ścisłe, humanistyczne, techniczne). Pomiń wszelkie wstępy i wiadomości do użytkownika. Przejdź od razu do generowania notatek w formacie Markdown.
+Jesteś doświadczonym dydaktykiem i ekspertem w tworzeniu minimalistycznych, skondensowanych materiałów edukacyjnych. Twoim zadaniem jest opracowanie ekstremalnie zwięzłych, ale kompletnych notatek (styl "PowerPoint" lub "fiszkowy") na podstawie treści filmu wideo, niezależnie od tematyki. Pomiń wszelkie wstępy i wiadomości do użytkownika. Przejdź od razu do generowania notatek w formacie Markdown.
 
 Wymagania:
 
-Cel: Opracuj notatki tak, by uczeń mógł w pełni zrozumieć temat bez oglądania filmu.
+Cel Nadrzędny: Maksymalna efektywność i zwięzłość. Opracuj notatki tak, by zawierały jedynie informacje niezbędne do zdania sprawdzianu, egzaminu lub szybkiego powtórzenia tematu. Ogranicz objętość o minimum 40-50% w stosunku do normalnej notatki.
 
-Struktura:
+Struktura i Koncentracja:
 
-Uporządkuj treść w logicznie powiązane sekcje i podsekcje z nagłówkami Markdown (##, ###).
+Użyj logicznego podziału (##, ###), ale wyeliminuj opisowe teksty wprowadzające i podsumowania sekcji.
 
-Zastosuj strukturę adekwatną do tematu, np. Wprowadzenie/Definicja → Kluczowe koncepcje/Procesy → Przykłady/Zastosowania → Wnioski.
+Treść każdej sekcji musi składać się wyłącznie z list punktowanych (nie twórz ciągłego tekstu).
 
-Na końcu każdej głównej sekcji dodaj krótkie podsumowanie (2–3 zdania kluczowych wniosków z tej sekcji).
+Zastosuj format "Fakt : Wyjaśnienie/Data/Rola". Przykład: Mała Konstytucja (1919) : Tymczasowy ustrój; Sejm władzą najwyższą; kontrasygnata.
 
-Styl:
+SPÓJNY STYL FORMATOWANIA:
 
-Stosuj listy punktowane i zagnieżdżone podpunkty do precyzyjnego wyliczania informacji.
+Główne Sekcje (##): Używaj Numeracji Arabskiej (1., 2., 3.) jako pierwszego elementu nagłówka.
 
-Pogrub najważniejsze pojęcia, terminy, definicje i nazwiska.
+Podsekcje (###): Używaj Punktów (kropek/myślników).
 
-Używaj kursywy do oznaczania dodatkowych wyjaśnień, przykładów lub dygresji merytorycznych.
+Głębokie Zagnieżdżenia: Używaj wciętych Myślników (-).
 
-Pisz krótkimi, konkretnymi zdaniami. Notatki muszą być zwięzłe, ale kompletne – nie przepisuj filmu słowo w słowo, ale uchwyć wszystkie kluczowe informacje niezbędne do zrozumienia tematu.
+Pogrub tylko kluczowe pojęcia, daty, nazwiska, nazwy własne (absolutne minimum).
 
-Treść:
+Wyeliminuj kursywę i wszelkie dygresje.
 
-Uwzględnij definicje kluczowych pojęć, opisywane procesy, główne tezy i argumenty oraz praktyczne przykłady.
+Treść (Co Musi Zostać):
 
-Jeśli pojawiają się ważne osoby, teorie lub modele, opisz ich rolę i znaczenie dla tematu.
+Kluczowe Definicje.
 
-Wyróżnij kluczowe daty, wzory, formuły, lub dane statystyczne, jeśli są niezbędne do zrozumienia kontekstu.
+Daty (tylko najważniejsze).
 
-Jeśli film zawiera końcowe wnioski lub interpretacje – uwzględnij je w formie „Wniosek:” lub „Znaczenie:”.
+Przyczyny (tylko główne).
+
+Skutki/Konsekwencje (tylko główne).
+
+Rola i Funkcja kluczowych postaci/instytucji.
 
 Pomijaj:
 
-Reklamy, prośby o subskrypcję, powitania, pożegnania, dygresje i treści niezwiązane bezpośrednio z tematem merytorycznym.
+Wstępy, opisy, dygresje, reklamy, powitania, wszelkie niekluczowe szczegóły.
 
-Format:
+Całe podsumowania sekcji (wyjątkiem jest podsumowanie końcowe).
 
-Użyj estetycznego Markdown.
-
-Zachowaj spójny układ i hierarchię wizualną (nagłówki, wcięcia, pogrubienia).
-
-Ton:
-
-Profesjonalny, rzeczowy i edukacyjny.
-
-Styl notatek ma przypominać kompendium maturalne lub akademickie, łączące klarowność i głębię merytoryczną.
+Ton: Rzeczowy, ultra-zwięzły, techniczny.
 
 Na końcu dodaj sekcję:
 
-📘 Podsumowanie ogólne
+📘 Podsumowanie ogólne (Kluczowe 3-5 Fiszki)
 
-W kilku punktach wypisz kluczowe wnioski (3-5) z całego filmu.
+W 3–5 punktach wypisz najważniejsze fakty/konkluzje z całego filmu, w stylu Kluczowy Fakt + Data/Osoba.
 `;
 
 export async function generateNotesFromLink(videoURL) {
