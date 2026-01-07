@@ -9,8 +9,6 @@ import "dotenv/config";
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const fileManager = new GoogleAIFileManager(process.env.GEMINI_API_KEY);
 
-dotenv.config();
-
 const model = genAI.getGenerativeModel({
   model: "gemini-1.5-pro",
 });
