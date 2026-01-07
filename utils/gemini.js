@@ -6,7 +6,7 @@ import { GoogleAIFileManager } from "@google/generative-ai/server";
 import fetch from "node-fetch";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const fileManager = new GoogleAIFileManager(process.env.GEMINI_API_KEY); // Inicjalizacja Managera
+const fileManager = new GoogleAIFileManager(process.env.GEMINI_API_KEY);
 
 dotenv.config();
 
