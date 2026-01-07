@@ -6,7 +6,7 @@ dotenv.config();
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const model = genAI.getGenerativeModel({
-  model: "Gemini 1.5 Flash",
+  model: "gemini-1.5-flash",
 });
 
 const PROMPT_TEXT = `
