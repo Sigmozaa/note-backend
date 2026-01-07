@@ -13,3 +13,6 @@ Features:
 • Calling AI from the backend using a key in .env
 • Validation and error handling
 • Ability to scale for future features
+
+
+The backend in this project uses Google's API to generate notes. The API has now been changed and the project needs updating, but the frontend and backend logic demonstrate the application's structure and AI integration.
