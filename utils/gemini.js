@@ -1,13 +1,7 @@
-import fs from "fs";
-import path from "path";
-import { pipeline } from "stream/promises";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { GoogleAIFileManager } from "@google/generative-ai/server";
-import fetch from "node-fetch";
 import "dotenv/config";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const fileManager = new GoogleAIFileManager(process.env.GEMINI_API_KEY);
 
 const model = genAI.getGenerativeModel({
   model: "gemini-1.5-pro",
@@ -76,9 +70,6 @@ Wypisz i wyjaśnij wszystkie podkreślone słowa użyte w notatkach, w prosty i 
 `;
 
 export async function generateNotesFromLink(videoURL) {
-  const tempFilePath = path.join("/tmp", `video_${Date.now()}.mp4`);
-  let uploadName = null;
-
   try {
     console.log(`🎬 Analizuję film: ${videoURL}`);
 
@@ -86,45 +77,10 @@ export async function generateNotesFromLink(videoURL) {
       throw new Error("Nieprawidłowy lub brakujący adres URL wideo.");
     }
 
-    const response = await fetch(videoURL);
-    if (!response.ok) {
-      throw new Error("Invalid video URL");
-    }
-    await pipeline(response.body, fs.createWriteStream(tempFilePath));
-
-    const uploadResult = await fileManager.uploadFile(tempFilePath, {
-      mimeType: "video/mp4",
-      displayName: "Film do analizy",
-    });
-    uploadName = uploadResult.file.name;
-
-    let fileState = await fileManager.getFile(uploadName);
-    while (fileState.state === "PROCESSING") {
-      console.log("⏳ Przetwarzanie wideo po stronie Google...");
-      await new Promise((resolve) => setTimeout(resolve, 5000));
-      fileState = await fileManager.getFile(uploadName);
-    }
-
-    if (fileState.state === "FAILED") {
-      throw new Error("Model nie był w stanie wygenerować treści");
-    }
-
-    const result = await model.generateContent({
-      contents: [
-        {
-          role: "user",
-          parts: [
-            { text: PROMPT_TEXT },
-            {
-              fileData: {
-                mimeType: "video/mp4",
-                fileUri: uploadResult.file.uri,
-              },
-            },
-          ],
-        },
-      ],
-    });
+    const result = await model.generateContent([
+      PROMPT_TEXT,
+      `Link do filmu: ${videoURL}`,
+    ]);
 
     const text = result.response.text();
 
@@ -132,14 +88,10 @@ export async function generateNotesFromLink(videoURL) {
       throw new Error("Model nie był w stanie wygenerować treści");
     }
 
-    await cleanup(tempFilePath, uploadName);
-
     console.log("✅ Notatki wygenerowane pomyślnie!");
     return text;
   } catch (error) {
     console.error("❌ Błąd podczas generowania notatek:", error);
-
-    await cleanup(tempFilePath, uploadName);
 
     let userMessage =
       "Przepraszamy, wystąpił problem podczas generowania notatek. Spróbuj ponownie później.";
@@ -151,12 +103,6 @@ export async function generateNotesFromLink(videoURL) {
       userMessage =
         "Błąd autoryzacji: Problem z kluczem API lub przekroczono limit. Skontaktuj się z administratorem.";
     } else if (
-      error.message.includes("Invalid video URL") ||
-      error.message.includes("Not a video")
-    ) {
-      userMessage =
-        "Błąd wideo: Wprowadzony adres URL jest nieprawidłowy lub nie można go przetworzyć.";
-    } else if (
       error.message.includes("Nieprawidłowy lub brakujący adres URL")
     ) {
       userMessage = error.message;
@@ -164,18 +110,9 @@ export async function generateNotesFromLink(videoURL) {
       error.message.includes("Model nie był w stanie wygenerować treści")
     ) {
       userMessage =
-        "Model nie był w stanie wygenerować treści. Upewnij się, że film jest dostępny i ma transkrypcję.";
+        "Model nie był w stanie wygenerować treści. Upewnij się, że film jest dostępny.";
     }
 
     throw new Error(userMessage);
-  }
-}
-
-async function cleanup(localPath, remoteName) {
-  try {
-    if (fs.existsSync(localPath)) fs.unlinkSync(localPath);
-    if (remoteName) await fileManager.deleteFile(remoteName);
-  } catch (e) {
-    console.error("Błąd podczas czyszczenia plików:", e.message);
   }
 }
